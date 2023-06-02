@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app_flutter/domain/blocs/search_cubit.dart';
 import 'package:weather_app_flutter/ui/widget/city_search_wdiget.dart';
-
-import 'ui/widget/weather_wdiget.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -14,7 +14,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WeatherWidget(),
+      home: BlocProvider<SearchViewCubit>(
+        create: (context) => SearchViewCubit(),
+        child: CitySearchWidget(),
+      ),
     );
   }
 }

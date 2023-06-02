@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app_flutter/domain/api_client/weather_client.dart';
@@ -8,23 +7,23 @@ import 'package:weather_app_flutter/domain/entity/hours_weather.dart';
 import 'package:weather_app_flutter/domain/entity/weather.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
-  final String cityName;
+  // final String cityName;
 
-  WeatherBloc(this.cityName) : super(WeatherInitial()) {
+  WeatherBloc() : super(WeatherInitial()) {
     on<WeatherRequested>((event, emit) async {
       emit(WeatherLoadInProgress());
       try {
-              final Weather weather =
-              await WeatherService.fetchCurrentWeather(query: event.city);
-              final List<WeatherHours> hourlyWeather =
-              await WeatherService.fetchHourlyWeather(query: event.city);
-              print("goodConntect");
-             emit(WeatherLoadSuccess(weather: weather, hourlyWeather: hourlyWeather));
-            } catch (_) {
-              emit( WeatherLoadFailure());
-            }
-    });
+        final Weather weather =
+            await WeatherService.fetchCurrentWeather(query: event.city);
+        final List<WeatherHours> hourlyWeather =
+            await WeatherService.fetchHourlyWeather(query: event.city);
 
+        emit(
+            WeatherLoadSuccess(weather: weather, hourlyWeather: hourlyWeather));
+      } catch (_) {
+        emit(WeatherLoadFailure());
+      }
+    });
   }
 
   // @override
