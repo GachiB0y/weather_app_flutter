@@ -5,7 +5,7 @@ import 'package:weather_app_flutter/domain/entity/hours_weather.dart';
 import 'package:weather_app_flutter/domain/entity/weather.dart';
 
 class WeatherService {
-  static String _apiKey = "359e265b7f821a525ff0722c6b01571f"; //439d4b804bc8187953eb36d2a8c26a02
+  static String _apiKey = "359e265b7f821a525ff0722c6b01571f";
 
   static Future<Weather> fetchCurrentWeather({query}) async {
     var url =
@@ -13,7 +13,7 @@ class WeatherService {
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
-      return Weather.fromJson(json.decode(response.body));
+      return Weather.fromJsonApi(json.decode(response.body));
     } else {
       throw Exception('Failed to load weather');
     }
@@ -28,7 +28,7 @@ class WeatherService {
       final jsonData = json.decode(response.body);
       final List<WeatherHours> data = (jsonData['list'] as List<dynamic>)
           .map((item) {
-        return WeatherHours.fromJson(item);
+        return WeatherHours.fromJsonApi(item);
       }).toList();
       return data;
     } else {

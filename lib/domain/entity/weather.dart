@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'weather.g.dart';
+
+@JsonSerializable()
 class Weather {
   final String cityName;
   final int temperature;
@@ -20,7 +25,8 @@ class Weather {
         required this.description,
         required this.time});
 
-  factory Weather.fromJson(Map<String, dynamic> json) {
+
+  factory Weather.fromJsonApi(Map<String, dynamic> json) {
     return Weather(
         cityName: json['name'],
         temperature: double.parse(json['main']['temp'].toString()).toInt(),
@@ -33,4 +39,8 @@ class Weather {
         time: DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000)
     );
   }
+
+  factory Weather.fromJson(Map<String, dynamic> json) =>
+      _$WeatherFromJson(json);
+  Map<String, dynamic> toJson() => _$WeatherToJson(this);
 }

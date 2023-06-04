@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app_flutter/domain/blocs/search_cubit.dart';
 import 'package:weather_app_flutter/domain/blocs/weather_bloc.dart';
-import 'package:weather_app_flutter/domain/blocs/weather_event.dart';
-import 'package:weather_app_flutter/ui/widget/weather_wdiget.dart';
+import 'package:weather_app_flutter/ui/navigation/main_navigation_route_name.dart';
 
-class CitySearchWidget extends StatelessWidget {
+class CitySearchWidget extends StatefulWidget {
   CitySearchWidget({Key? key}) : super(key: key);
 
+  @override
+  State<CitySearchWidget> createState() => _CitySearchWidgetState();
+}
+
+class _CitySearchWidgetState extends State<CitySearchWidget> {
   final TextEditingController searchController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +32,7 @@ class CitySearchWidget extends StatelessWidget {
                 ))));
     final cubit = context.watch<SearchViewCubit>();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.blue,
       body: SafeArea(
         child: Center(
@@ -98,18 +104,14 @@ class CitySearchWidget extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.3,
               ),
               Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.only(top:20.0,left:20.0,right:20.0,bottom:20.0),
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                       style: style,
                       onPressed: () {
                         cubit.createListItems(searchController.text);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WeatherWidget.create(
-                                    searchController.text)));
+                         Navigator.of(context).pushNamed(MainNavigationRouteNames.mainScreen,arguments:searchController.text);
                       },
                       child: const Text('Get the weather forecast',
                           style: TextStyle(fontSize: 20, color: Colors.black))),
