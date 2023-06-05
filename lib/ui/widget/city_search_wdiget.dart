@@ -14,7 +14,6 @@ class CitySearchWidget extends StatefulWidget {
 class _CitySearchWidgetState extends State<CitySearchWidget> {
   final TextEditingController searchController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     final style = ButtonStyle(

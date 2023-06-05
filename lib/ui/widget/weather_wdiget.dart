@@ -62,6 +62,14 @@ class _WeatherWidgetState extends State<WeatherWidget> {
               }, child: Text('Ошибка сетиб вернутся на главную'),),
             ),
           );
+        }else if (state is WeatherInitial) {
+          return Scaffold(
+            body: Center(
+              child: TextButton(onPressed: () {
+                Navigator.of(context).pushNamed(MainNavigationRouteNames.searchScreen);
+              }, child: Text('Ошибка вернутся на главную'),),
+            ),
+          );
         } else {
           return const Scaffold(
             body: Center(

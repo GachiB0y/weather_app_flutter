@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-       initialRoute: _storage.runtimeType.toString().isNotEmpty == true ? MainNavigationRouteNames.mainScreen : MainNavigationRouteNames.searchScreen,
+      initialRoute: _storage.runtimeType.toString().isNotEmpty == true ? MainNavigationRouteNames.mainScreen : MainNavigationRouteNames.searchScreen,
+      // initialRoute: HydratedBloc.storage.read('weather').toString().isNotEmpty == true ? MainNavigationRouteNames.mainScreen : MainNavigationRouteNames.searchScreen,
       routes: mainNavigation.makeRoute(),
       onGenerateRoute: mainNavigation.onGenerateRoute,
     );
