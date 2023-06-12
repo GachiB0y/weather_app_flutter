@@ -1,6 +1,6 @@
 # weather_app_flutter
 
-![til](.assets/Volvko_weather_app.gif)
+![til](./assets/Volvko_weather_app.gif)
 
 Flutter project  с использованием следующих технологий:
 api.openweathermap,
