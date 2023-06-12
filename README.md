@@ -1,6 +1,14 @@
 # weather_app_flutter
 
-A new Flutter project.
+![til](.assets/Volvko_weather_app.gif)
+
+Flutter project  с использованием следующих технологий:
+api.openweathermap,
+Bloc,
+hydrated Bloc,
+http,
+code generation (json serializable).
+
 
 ## Getting Started
 
